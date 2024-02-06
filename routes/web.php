@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('/3', function () {
+=======
+Route::get('/2', function () {
+>>>>>>> bdf18b06f603d61b4de234dd9ecc63ecc76a10e8
     return view('welcome1');
 });
