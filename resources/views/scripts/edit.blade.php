@@ -44,7 +44,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-dark">Отправить</button>
+            <button type="submit" class="btn btn-dark">Редактировать</button>
 
         </form>
     </div>
