@@ -4,7 +4,7 @@
 
 @section('body')
 
-    <div class="mt-5">
+    <div class="container mt-5">
         <h2>Редактировать скрипта</h2>
 
         <form action="#" method="POST" enctype="multipart/form-data">
