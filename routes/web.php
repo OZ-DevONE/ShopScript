@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthUser; // Контроллер обработки данных пользователей
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+// Главная страница проекта
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+// Страница логина
+
+
+// Группа роутера, которая относится к одному контроллеру аунтефикации
+Route::controller(AuthUser::class)->group(function () {
+    Route::post('/authlogin', 'loginuser')->name('login');
+    Route::post('/authreg', 'reguser')->name('register');
 });
