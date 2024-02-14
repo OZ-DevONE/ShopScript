@@ -19,8 +19,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('price', 70);
 
-            $table->foreignIdFor(User::class);
-            $table->foreign('user_id')->on('users')->references('id');
+            // $table->foreignIdFor(User::class);
+            // $table->foreign('user_id')->on('users')->references('id');
 
             $table->foreignIdFor(Category::class);
             $table->foreign('category_id')->on('categories')->references('id');

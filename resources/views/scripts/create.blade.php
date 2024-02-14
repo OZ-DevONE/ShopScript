@@ -7,7 +7,7 @@
     <div class="container mt-5">
         <h2>Добавление скрипта</h2>
 
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{route('scripts.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -27,8 +27,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Описание</label>
-                <input name="image" type="file">
+                <label for="image" class="form-label">Изображение</label>
+                <input type="file" class="form-control" name="image" id="image">
                 @error('image')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -36,10 +36,21 @@
 
             <div class="mb-3">
                 <label for="category" class="form-label">Категории</label>
-                <select name="category" id="category">
-                    <option value="1">1</option>
+                <select class="form-select" name="category" aria-label="Default select example">
+                    @foreach ($categories as $categories_item)
+                        <option value="{{ $categories_item->id }}">{{ $categories_item->title }}</option>
+                    @endforeach
                 </select>
+
                 @error('category')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Цена</label>
+                <input type="number" class="form-control" name="price" id="price">
+                @error('price')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>

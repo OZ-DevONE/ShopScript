@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthUser; // Контроллер обработки данных пользователей
+use App\Http\Controllers\ScriptController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,27 @@ Route::controller(AuthUser::class)->group(function () {
     Route::post('/authlogin', 'loginuser')->name('login');
     Route::post('/authreg', 'reguser')->name('register');
 });
+
+
+
+Route::get('/scripts', [ScriptController::class, 'index'])->name('scripts.index');
+
+// ДОБАВЛЕНИЕ СКРИПТА
+Route::get('/scripts/create_script', [ScriptController::class, 'create'])->name('scripts.create');
+Route::post('/scripts', [ScriptController::class, 'store'])->name('scripts.store');
+
+
+
+// ПРОСМОТР СКРИПТА
+Route::get('/scripts/{id}', [ScriptController::class, 'show'])->name('scripts.show');
+
+
+
+// РЕДАКТИРОВАНИЕ СКРИПТА
+Route::get('/scripts/{id}/edit_script', [ScriptController::class, 'edit'])->name('scripts.edit');
+Route::put('/scripts/{id}', [ScriptController::class, 'update'])->name('scripts.update');
+
+
+
+// УДАЛЕНИЕ СКРИПТА
+Route::delete('/scripts/{id}', [ScriptController::class, 'destroy'])->name('scripts.destroy');
