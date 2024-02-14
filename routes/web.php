@@ -15,15 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-// Главная страница проекта
+// ГЛАВНАЯ СТРАНИЦА ПРОЕКТА
+Route::get('/', function () {  return view('index'); })->name('index');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-// Страница логина
+
+
+// СТРАНИЦА АВТОРИЗАЦИЯ
+Route::get('/login', function () { return view('auth.login'); })->name('login');
+
 
 
 // Группа роутера, которая относится к одному контроллеру аунтефикации
@@ -34,7 +33,10 @@ Route::controller(AuthUser::class)->group(function () {
 
 
 
+// КАТАЛОГ
 Route::get('/scripts', [ScriptController::class, 'index'])->name('scripts.index');
+
+
 
 // ДОБАВЛЕНИЕ СКРИПТА
 Route::get('/scripts/create_script', [ScriptController::class, 'create'])->name('scripts.create');
