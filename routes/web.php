@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthUser; // Контроллер обработки данных пользователей
+use App\Http\Controllers\AdminController; // Контроллер обработки админ данных
 use App\Http\Controllers\ScriptController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,10 @@ Route::controller(AuthUser::class)->group(function () {
     Route::post('/authreg', 'reguser')->name('register_post');
 });
 
+Route::middleware(['is_admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'adminOnlyPage']);
+    // Здесь вы можете добавить другие административные маршруты
+});
 
 
 // КАТАЛОГ
