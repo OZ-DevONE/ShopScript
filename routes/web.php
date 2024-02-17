@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthUser; // Контроллер обработки данных пользователей
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ScriptController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,19 +40,19 @@ Route::get('/scripts', [ScriptController::class, 'index'])->name('scripts.index'
 
 
 // ДОБАВЛЕНИЕ КАТЕГОРИИ
-Route::get('/categories/create_category', [ScriptController::class, 'create'])->name('categories.create');
-Route::post('/categories', [ScriptController::class, 'store'])->name('categories.store');
+Route::get('/categories/create_category', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
 
 
 
 // РЕДАКТИРОВАНИЕ КАТЕГОРИИ
-Route::get('/categories/{id}/edit_category', [ScriptController::class, 'edit'])->name('categories.edit');
-Route::put('/categories/{id}', [ScriptController::class, 'update'])->name('categories.update');
+Route::get('/categories/{id}/edit_category', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
 
 
 
-// УДАЛЕНИЕ СКРИПТА
-Route::delete('/scripts/{id}', [ScriptController::class, 'destroy'])->name('scripts.destroy');
+// УДАЛЕНИЕ КАТЕГОРИИ
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
 

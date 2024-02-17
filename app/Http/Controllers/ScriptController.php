@@ -71,7 +71,7 @@ class ScriptController extends Controller
             "price" => $data['price'],
         ]);
 
-        return redirect()->route('scripts.index')->with('success', 'Запись успешно добавлена');
+        return back()->with('success', 'Запись успешно добавлена');
     }
 
 
@@ -125,7 +125,7 @@ class ScriptController extends Controller
 
         $scripts->update($data);
 
-        return redirect()->route('scripts.index')->with('success', 'Запись успешно изменена');
+        return back()->with('success', 'Запись успешно добавлена');
 
     }
 
@@ -134,6 +134,6 @@ class ScriptController extends Controller
     public function destroy($id)
     {
         Script::destroy($id);
-        return redirect()->route('scripts.index');
+        return back()->with('success', 'Запись успешно добавлена');
     }
 }

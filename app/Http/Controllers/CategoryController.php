@@ -27,7 +27,7 @@ class CategoryController extends Controller
             "title" => $data['title'],
         ]);
 
-        return redirect()->route('/')->with('success', 'Запись успешно добавлена');
+        return back()->with('success', 'Запись успешно добавлена');
 
     }
 
