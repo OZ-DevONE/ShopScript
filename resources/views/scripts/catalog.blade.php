@@ -13,8 +13,6 @@
                 <p class="card-text"> {{$scripts_item->description}} </p>
                 <h6 class="card-title"> {{$scripts_item->price}} ₽ </h6>
                 <a href="#" class="btn btn-primary">Подробнее</a>
-
-
             </div>
         </div>
     @endforeach

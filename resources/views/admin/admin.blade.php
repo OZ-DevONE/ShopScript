@@ -4,9 +4,11 @@
 
 @section('body')
 
-    <a href="{{ route('categories.create') }}">Добавить</a>
+    <a href="{{ route('scripts.create') }}">Добавить скрипт</a>
 
-    @foreach ($scripts as $scripts_item)
+    <a href="{{ route('categories.create') }}">Добавить категорию</a>
+
+    {{-- @foreach ($scripts as $scripts_item)
         <div class="card" style="width: 18rem;">
             <img src="/storage/scripts/{{ $scripts_item->image }}" class="card-img-top" alt="{{ $scripts_item->image }}">
             <div class="card-body">
@@ -26,6 +28,6 @@
                 </form>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 
 @endsection
