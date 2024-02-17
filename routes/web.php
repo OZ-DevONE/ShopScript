@@ -28,8 +28,8 @@ Route::get('/register', function () { return view('auth.reg'); })->name('registe
 
 // Группа роутера, которая относится к одному контроллеру аунтефикации
 Route::controller(AuthUser::class)->group(function () {
-    Route::post('/authlogin', 'loginuser')->name('login');
-    Route::post('/authreg', 'reguser')->name('register');
+    Route::post('/authlogin', 'loginuser')->name('login_post');
+    Route::post('/authreg', 'reguser')->name('register_post');
 });
 
 // Роутер для отображения профиля, не сможет зайти не рег юзер
@@ -37,6 +37,7 @@ Route::get('/profile', function () {
     return view('profile.profile');
 })->middleware('auth')->name('profile');
 
+Route::post('/logout', [AuthUser::class, 'logout'])->name('logout');
 
 // КАТАЛОГ
 Route::get('/scripts', [ScriptController::class, 'index'])->name('scripts.index');

@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('app.nav')
 
-@section('content')
+@section('body')
 <div class="container">
     <h1>Профиль пользователя</h1>
     <p>Добро пожаловать, {{ Auth::user()->name }}!</p>
