@@ -3,7 +3,7 @@
 @section('body')
 <div class="container mt-5">
     <div class="card mx-auto col-md-6 p-4">
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login_post') }}">
             @csrf <!-- CSRF защита -->
         
             <div class="mb-3">
@@ -24,6 +24,9 @@
         
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <div class="mt-3">
+            <p>Нету аккаунта, вы неформал? Быстрее леши себя этой учести: <a href="{{ route('register') }}">Register</a></p>
+        </div>
     </div>
 </div>
 @endsection
