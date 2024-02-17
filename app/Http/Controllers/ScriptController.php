@@ -63,7 +63,7 @@ class ScriptController extends Controller
             "price" => $data['price'],
         ]);
 
-        return redirect()->route('scripts.index')->with('success', 'Запись успешно изменена');
+        return redirect()->route('scripts.index')->with('success', 'Запись успешно добавлена');
     }
 
 

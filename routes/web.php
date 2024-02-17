@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 // ГЛАВНАЯ СТРАНИЦА ПРОЕКТА
 Route::get('/', function () {  return view('index'); })->name('index');
-
+Route::get('/admin', function () {  return view('admin.admin'); })->name('admin');
 
 
 // СТРАНИЦА АВТОРИЗАЦИЯ
@@ -35,6 +35,19 @@ Route::controller(AuthUser::class)->group(function () {
 
 // КАТАЛОГ
 Route::get('/scripts', [ScriptController::class, 'index'])->name('scripts.index');
+
+
+
+// ДОБАВЛЕНИЕ КАТЕГОРИИ
+Route::get('/categories/create_category', [ScriptController::class, 'create'])->name('categories.create');
+Route::post('/categories', [ScriptController::class, 'store'])->name('categories.store');
+
+
+
+// РЕДАКТИРОВАНИЕ СКРИПТА
+Route::get('/categories/{id}/edit_category', [ScriptController::class, 'edit'])->name('categories.edit');
+Route::put('/categories/{id}', [ScriptController::class, 'update'])->name('categories.update');
+
 
 
 
