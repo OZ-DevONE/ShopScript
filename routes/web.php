@@ -24,12 +24,21 @@ Route::get('/admin', function () {  return view('admin.admin'); })->name('admin'
 // СТРАНИЦА АВТОРИЗАЦИЯ
 Route::get('/login', function () { return view('auth.login'); })->name('login');
 
+// СТРАНИЦА АВТОРИЗАЦИЯ
+Route::get('/register', function () { return view('auth.reg'); })->name('register');
 
+// Выход из профиля
+Route::post('/logout', [AuthUser::class, 'logout'])->name('logout');
+
+// Профиль
+Route::get('/profile', function () {
+    return view('profile.profile');
+})->middleware('auth')->name('profile');
 
 // Группа роутера, которая относится к одному контроллеру аунтефикации
 Route::controller(AuthUser::class)->group(function () {
-    Route::post('/authlogin', 'loginuser')->name('login');
-    Route::post('/authreg', 'reguser')->name('register');
+    Route::post('/authlogin', 'loginuser')->name('login_post');
+    Route::post('/authreg', 'reguser')->name('register_post');
 });
 
 
