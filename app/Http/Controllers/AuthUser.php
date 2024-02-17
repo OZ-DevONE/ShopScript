@@ -24,11 +24,9 @@ class AuthUser extends Controller
             'password.required' => 'Пароль обязателен к заполнению.',
         ]);
 
-        // Попытка аутентификации
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            // Переадресация на страницу профиля
             return redirect()->route('profile');
         }
 
@@ -46,17 +44,24 @@ class AuthUser extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Создание пользователя
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        // Аутентификация пользователя
         Auth::login($user);
 
-        // Переадресация на страницу профиля
         return redirect()->route('profile');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

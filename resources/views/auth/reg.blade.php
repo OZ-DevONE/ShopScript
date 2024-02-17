@@ -3,7 +3,7 @@
 @section('body')
 <div class="container mt-5">
     <div class="card mx-auto col-md-6 p-4">
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register_post') }}">
             @csrf <!-- CSRF защита -->
 
             <div class="mb-3">
@@ -29,7 +29,14 @@
                     <div class="alert alert-danger">{{ $errors->first('password') }}</div>
                 @endif
             </div>
-
+            
+            <div class="mb-3">
+                <label for="password-confirm" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="password-confirm" name="password_confirmation">
+                @if ($errors->has('password_confirmation'))
+                    <div class="alert alert-danger">{{ $errors->first('password_confirmation') }}</div>
+                @endif
+            </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
