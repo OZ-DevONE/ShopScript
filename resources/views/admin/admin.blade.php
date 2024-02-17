@@ -8,6 +8,8 @@
 
     <a href="{{ route('categories.create') }}">Добавить категорию</a>
 
+
+
     {{-- @foreach ($scripts as $scripts_item)
         <div class="card" style="width: 18rem;">
             <img src="/storage/scripts/{{ $scripts_item->image }}" class="card-img-top" alt="{{ $scripts_item->image }}">

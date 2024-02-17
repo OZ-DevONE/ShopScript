@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class ScriptController extends Controller
 {
-    // ВЫВОД ВСЕХ ТОВАРО
+    // ВЫВОД ВСЕХ ТОВАРОВ
     public function index()
     {
         $scripts = Script::paginate(10);
-    
+
         return view('scripts.catalog', [
             "scripts" => $scripts,
         ]);
