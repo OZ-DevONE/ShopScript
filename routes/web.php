@@ -23,7 +23,8 @@ Route::get('/', function () {  return view('index'); })->name('index');
 // СТРАНИЦА АВТОРИЗАЦИЯ
 Route::get('/login', function () { return view('auth.login'); })->name('login');
 
-
+// СТРАНИЦА Регистрация
+Route::get('/register', function () { return view('auth.reg'); })->name('register');
 
 // Группа роутера, которая относится к одному контроллеру аунтефикации
 Route::controller(AuthUser::class)->group(function () {
@@ -31,6 +32,10 @@ Route::controller(AuthUser::class)->group(function () {
     Route::post('/authreg', 'reguser')->name('register');
 });
 
+// Роутер для отображения профиля, не сможет зайти не рег юзер
+Route::get('/profile', function () {
+    return view('profile.profile');
+})->middleware('auth')->name('profile');
 
 
 // КАТАЛОГ

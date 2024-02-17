@@ -24,6 +24,9 @@
         
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <div class="mt-3">
+            <p>Нету аккаунта, вы неформал? Быстрее леши себя этой учести: <a href="{{ route('register') }}">Register</a></p>
+        </div>
     </div>
 </div>
 @endsection
