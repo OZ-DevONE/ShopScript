@@ -7,7 +7,7 @@
     <div class="container mt-5">
         <h2>Добавление категории</h2>
 
-        <form action="#" method="POST">
+        <form action="{{route('categories.store')}}" method="POST">
             @csrf
 
             <div class="mb-3">
