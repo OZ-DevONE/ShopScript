@@ -8,15 +8,16 @@ use Illuminate\Http\Request;
 
 class ScriptController extends Controller
 {
-
+    // ВЫВОД ВСЕХ ТОВАРО
     public function index()
     {
-        $scripts = Script::all();
+        $scripts = Script::paginate(10);
+    
         return view('scripts.catalog', [
             "scripts" => $scripts,
         ]);
     }
-
+    
     // ДОБАВЛЕНИЕ СКРИПТА
     public function create()
     {
@@ -122,7 +123,7 @@ class ScriptController extends Controller
     }
 
 
-    // УДАЛИТЬ РЕЦЕПТ
+    // УДАЛИТЬ СКРИПТ
     public function destroy($id)
     {
         Script::destroy($id);
