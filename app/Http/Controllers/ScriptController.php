@@ -46,9 +46,9 @@ class ScriptController extends Controller
         ]);
 
         if ($request->has('category')) {
-            $data['category'] = $request->input('category');
+            $data['category_id'] = $request->input('category');
         } else {
-            $data['category'] = 1;
+            $data['category_id'] = 1;
         }
 
         if ($request->has("image")) {
