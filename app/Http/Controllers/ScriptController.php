@@ -9,14 +9,35 @@ use Illuminate\Http\Request;
 class ScriptController extends Controller
 {
     // ВЫВОД ВСЕХ ТОВАРОВ
-    public function index()
+    public function index(Request $request)
     {
-        $scripts = Script::paginate(10);
-
-        return view('scripts.catalog', [
-            "scripts" => $scripts,
-        ]);
+        $query = Script::query();
+    
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+    
+        if ($request->filled('price')) {
+            if ($request->price == 'low_to_high') {
+                $query->orderBy('price');
+            } elseif ($request->price == 'high_to_low') {
+                $query->orderByDesc('price');
+            }
+        }
+    
+        if ($request->filled('date')) {
+            if ($request->date == 'newest') {
+                $query->orderByDesc('created_at');
+            } elseif ($request->date == 'oldest') {
+                $query->orderBy('created_at');
+            }
+        }
+    
+        $scripts = $query->paginate(9); // Для отображения по 3 товара в ряд
+    
+        return view('scripts.catalog', compact('scripts'));
     }
+    
 
     // ДОБАВЛЕНИЕ СКРИПТА
     public function create()
@@ -57,9 +78,13 @@ class ScriptController extends Controller
         }
 
         if ($request->hasFile("source_code")) {
-            $sourceCodePath = $request->file("source_code")->store("public/source_codes");
-            $data["source_code_path"] = $sourceCodePath;
+            $file = $request->file("source_code");
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs("public/source_codes", $filename);
+            $data["source_code_path"] = $path;
         }
+        
+        
 
         if (auth()->check()) {
             $data['user_id'] = auth()->id();
@@ -75,15 +100,17 @@ class ScriptController extends Controller
 
 
     // ПРОСМОТР СКРИПТА
-    public function show($id)
+    public function show(Script $script)
     {
-        $scripts = Script::findOrFail($id);
-
-        return view("scripts.show", [
-            "scripts" => $scripts,
-        ]);
+        $fileExtension = null;
+        if ($script->source_code_path) {
+            $fileExtension = pathinfo(storage_path('app/public/' . $script->source_code_path), PATHINFO_EXTENSION);
+        }
+    
+        return view('scripts.show', compact('script', 'fileExtension'));
     }
-
+    
+    
 
 
     // РЕДАКТИРОВАНИЕ СКРИПТА

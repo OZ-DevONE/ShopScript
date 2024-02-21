@@ -3,38 +3,67 @@
 @section('title', 'Каталог')
 
 @section('body')
+<div class="container mt-5">
+    <h2>Каталог</h2>
 
-    <div class="container">
+    <!-- Форма для фильтрации -->
+    <form action="{{ route('scripts.index') }}" method="GET" class="mb-5">
+        <div class="row">
+            <div class="col">
+                <select class="form-select" name="category">
+                    <option value="">Выберите категорию</option>
+                    @foreach(App\Models\Category::all() as $category)
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" name="price">
+                    <option value="">Сортировать по цене</option>
+                    <option value="low_to_high">От низкой к высокой</option>
+                    <option value="high_to_low">От высокой к низкой</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" name="date">
+                    <option value="">Сортировать по дате</option>
+                    <option value="newest">Сначала новые</option>
+                    <option value="oldest">Сначала старые</option>
+                </select>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Применить фильтр</button>
+            </div>
+        </div>
+    </form>
 
-        <h2 class="mt-5">
-            Каталог
-        </h2>
 
-        <div class="mt-3">
-
-            @if ($scripts->count() > 0)
-                @foreach ($scripts as $scripts_item)
-                    <div class="card" style="width: 18rem;">
-                        <img src="/storage/scripts/{{ $scripts_item->image }}" class="card-img-top"
-                            alt="{{ $scripts_item->image }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $scripts_item->title }}</h5>
-                            <p class="card-text"> {{ $scripts_item->description }} </p>
-                            <h6 class="card-title"> {{ $scripts_item->price }} ₽ </h6>
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+    <div class="mt-3">
+        @if ($scripts->count() > 0)
+            <div class="row">
+                @foreach ($scripts as $index => $scripts_item)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="/storage/scripts/{{ $scripts_item->image }}" class="card-img-top" alt="{{ $scripts_item->image }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $scripts_item->title }}</h5>
+                                <p class="card-text">{{ $scripts_item->description }}</p>
+                                <h6 class="card-title">{{ $scripts_item->price }} ₽</h6>
+                                <a href="{{ route('scripts.show', $scripts_item->id) }}" class="btn btn-primary">Подробнее</a>
+                            </div>
                         </div>
                     </div>
+                    @if (($index + 1) % 3 == 0)
+                        </div><div class="row">
+                    @endif
                 @endforeach
-
-                <div class="mt-4">
-                    {{ $scripts->links() }}
-                </div>
-            @else
-                <p>Товаров не найдено.</p>
-            @endif
-
-        </div>
-
+            </div>
+            <div class="mt-4">
+                {{ $scripts->links() }}
+            </div>
+        @else
+            <p>Товаров не найдено.</p>
+        @endif
     </div>
-
+</div>
 @endsection

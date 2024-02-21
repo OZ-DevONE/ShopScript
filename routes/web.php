@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthUser; // Контроллер обработки данных пользователей
 use App\Http\Controllers\AdminController; // Контроллер для обработки админ данных
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ScriptController;
 use Illuminate\Support\Facades\Route;
@@ -32,9 +33,8 @@ Route::get('/register', function () { return view('auth.reg'); })->name('registe
 Route::post('/logout', [AuthUser::class, 'logout'])->name('logout');
 
 // Профиль
-Route::get('/profile', function () {
-    return view('profile.profile');
-})->middleware('auth')->name('profile');
+Route::get('/profile', [CartController::class, 'profile'])->middleware('auth')->name('profile');
+
 
 // Группа роутера, которая относится к одному контроллеру аунтефикации
 Route::controller(AuthUser::class)->group(function () {
@@ -85,7 +85,7 @@ Route::post('/scripts', [ScriptController::class, 'store'])->name('scripts.store
 
 
 // ПРОСМОТР СКРИПТА
-Route::get('/scripts/{id}', [ScriptController::class, 'show'])->name('scripts.show');
+Route::get('/scripts/{script}', [ScriptController::class, 'show'])->name('scripts.show');
 
 
 
@@ -97,3 +97,17 @@ Route::put('/scripts/{id}', [ScriptController::class, 'update'])->name('scripts.
 
 // УДАЛЕНИЕ СКРИПТА
 Route::delete('/scripts/{id}', [ScriptController::class, 'destroy'])->name('scripts.destroy');
+
+
+
+// ДЛЯ ДОБАВЛЕНИЯ ТОВАРА В КОРЗИНУ
+Route::post('/cart/add/{scriptId}', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+
+// Показать страницу оформления заказа
+Route::get('/cart/order', [CartController::class, 'showOrderForm'])->name('cart.order');
+
+// Обработать оформление заказа
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');

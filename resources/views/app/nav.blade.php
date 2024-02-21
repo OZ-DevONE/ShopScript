@@ -41,6 +41,9 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
+                                @auth
+                                    <a class="dropdown-item" href="{{ route('cart.index') }}">Корзина</a>
+                                @endauth
                                 <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     Выйти
