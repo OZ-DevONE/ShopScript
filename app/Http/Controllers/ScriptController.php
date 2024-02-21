@@ -18,14 +18,6 @@ class ScriptController extends Controller
         ]);
     }
 
-    public function admin()
-    {
-        $scripts = Script::all();
-        return view('admin.admin', [
-            "scripts" => $scripts,
-        ]);
-    }
-
     // ДОБАВЛЕНИЕ СКРИПТА
     public function create()
     {
@@ -77,7 +69,7 @@ class ScriptController extends Controller
 
         Script::create($data);
 
-        return back()->with('success', 'Запись успешно добавлена');
+        return redirect()->route('admin.admin');
     }
 
 

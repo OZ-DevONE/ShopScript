@@ -32,5 +32,31 @@ class CategoryController extends Controller
     }
 
     // РЕДАКТИРОВАНИЕ КАТЕГОРИИ
+    public function edit($id)
+    {
+        $categories = Category::findOrFail($id);
+        return view('categories.edit', [
+            "categories" => $categories,
+        ]);
+    }
 
+    public function update(Request $request, $id)
+    {
+        $categories = Category::findOrFail($id);
+        $data = $request->validate([
+            "title" => ["required", "max:30"],
+        ], [
+            "title.required" => "Поле 'Название категории' обязательно для заполнения",
+        ]);
+
+        $categories->update($data);
+
+        return redirect()->route('admin.admin');
+    }
+
+    public function destroy($id)
+    {
+        Category::destroy($id);
+        return redirect()->route('admin.admin');
+    }
 }
