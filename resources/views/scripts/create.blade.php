@@ -55,6 +55,15 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label for="source_code" class="form-label">Исходный код / Архив</label>
+                <input type="file" class="form-control" name="source_code" id="source_code">
+                @error('source_code')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+            </div>
+            
+
             <button type="submit" class="btn btn-dark">Добавить</button>
 
         </form>

@@ -36,6 +36,7 @@ class ScriptController extends Controller
             "image" => ["required", "image"],
             "category" => ["required"],
             "price" => ["required"],
+            "source_code" => ["nullable", "file"],
         ], [
             "title.required" => "Поле 'Название скрипта' обязательно для заполнения",
             "description.required" => "Поле 'Описание' обязательно для заполнения",
@@ -45,9 +46,9 @@ class ScriptController extends Controller
         ]);
 
         if ($request->has('category')) {
-            $data['category'] = $request->input('category');
+            $data['category_id'] = $request->input('category');
         } else {
-            $data['category'] = 1;
+            $data['category_id'] = 1;
         }
 
         if ($request->has("image")) {
@@ -55,14 +56,18 @@ class ScriptController extends Controller
             $data["image"] = $image;
         }
 
+        if ($request->hasFile("source_code")) {
+            $sourceCodePath = $request->file("source_code")->store("public/source_codes");
+            $data["source_code_path"] = $sourceCodePath;
+        }
 
-        Script::create([
-            "title" => $data['title'],
-            "description" => $data['description'],
-            "image" => $data['image'],
-            "category_id" => $data['category'],
-            "price" => $data['price'],
-        ]);
+        if (auth()->check()) {
+            $data['user_id'] = auth()->id();
+        } else {
+            return redirect()->route('login')->with('error', 'Необходима авторизация.');
+        }
+
+        Script::create($data);
 
         return redirect()->route('admin.admin');
     }

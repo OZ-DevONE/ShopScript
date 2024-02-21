@@ -15,6 +15,8 @@ class Script extends Model
         'image',
         'category_id',
         'price',
+        'user_id',
+        'source_code_path',
     ];
 
     public function category() {
