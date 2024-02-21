@@ -43,13 +43,18 @@ Route::controller(AuthUser::class)->group(function () {
 });
 
 Route::middleware(['is_admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'adminOnlyPage']);
+    Route::get('/admin', [AdminController::class, 'adminOnlyPage'])->name('admin.admin');
     // Здесь вы можете добавить другие административные маршруты
 });
 
 
 // КАТАЛОГ
 Route::get('/scripts', [ScriptController::class, 'index'])->name('scripts.index');
+
+
+
+// -----------------------------------------------
+
 
 
 // ДОБАВЛЕНИЕ КАТЕГОРИИ
@@ -66,6 +71,10 @@ Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('cat
 
 // УДАЛЕНИЕ КАТЕГОРИИ
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+
+
+// -----------------------------------------------
 
 
 
