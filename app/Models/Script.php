@@ -16,4 +16,8 @@ class Script extends Model
         'category_id',
         'price',
     ];
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }

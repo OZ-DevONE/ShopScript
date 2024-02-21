@@ -12,4 +12,10 @@ class Category extends Model
     protected $fillable = [
         'title',
     ];
+
+    public function scripts()
+    {
+        return $this->hasMany(Script::class);
+    }
+
 }
