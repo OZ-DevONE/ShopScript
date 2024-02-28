@@ -33,7 +33,7 @@ Route::get('/register', function () { return view('auth.reg'); })->name('registe
 Route::post('/logout', [AuthUser::class, 'logout'])->name('logout');
 
 // Профиль
-Route::get('/profile', [CartController::class, 'profile'])->middleware('auth')->name('profile');
+Route::get('/profile', [CartController::class, 'profile'])->middleware('auth')->name('profile')->middleware('prevent_admin_access');
 
 
 // Группа роутера, которая относится к одному контроллеру аунтефикации
@@ -44,12 +44,11 @@ Route::controller(AuthUser::class)->group(function () {
 
 Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'adminOnlyPage'])->name('admin.admin');
-    // Здесь вы можете добавить другие административные маршруты
 });
 
 
 // КАТАЛОГ
-Route::get('/scripts', [ScriptController::class, 'index'])->name('scripts.index');
+Route::get('/scripts', [ScriptController::class, 'index'])->name('scripts.index')->middleware('prevent_admin_access');
 
 
 
@@ -101,13 +100,13 @@ Route::delete('/scripts/{id}', [ScriptController::class, 'destroy'])->name('scri
 
 
 // ДЛЯ ДОБАВЛЕНИЯ ТОВАРА В КОРЗИНУ
-Route::post('/cart/add/{scriptId}', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/add/{scriptId}', [CartController::class, 'add'])->name('cart.add')->middleware('auth')->middleware('prevent_admin_access');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index')->middleware('prevent_admin_access');
+Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove')->middleware('prevent_admin_access');
 
 
 // Показать страницу оформления заказа
-Route::get('/cart/order', [CartController::class, 'showOrderForm'])->name('cart.order');
+Route::get('/cart/order', [CartController::class, 'showOrderForm'])->name('cart.order')->middleware('prevent_admin_access');
 
 // Обработать оформление заказа
-Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout')->middleware('prevent_admin_access');

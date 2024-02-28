@@ -24,28 +24,32 @@
 
         </div>
 
-        @foreach ($scripts as $scripts_item)
-            <div class="card mt-5" style="width: 18rem;">
-                <img src="/storage/scripts/{{ $scripts_item->image }}" class="card-img-top"
-                    alt="{{ $scripts_item->image }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $scripts_item->title }}</h5>
-                    <p class="card-text"> {{ $scripts_item->description }} </p>
-                    <h6 class="card-title"> {{ $scripts_item->price }} ₽ </h6>
-                    <a href="#" class="btn btn-primary">Подробнее</a>
+        <div class="mt-3">
+            <div class="row">
+                @foreach ($scripts as $scripts_item)
+                    <div class="card mt-5" style="width: 18rem;">
+                        <img src="/storage/scripts/{{ $scripts_item->image }}" class="card-img-top"
+                            alt="{{ $scripts_item->image }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $scripts_item->title }}</h5>
+                            <p class="card-text"> {{ $scripts_item->description }} </p>
+                            <h6 class="card-title"> {{ $scripts_item->price }} ₽ </h6>
+                            <a href="#" class="btn btn-primary">Подробнее</a>
 
-                    <a href="{{ route('scripts.edit', $scripts_item->id) }}" class="btn btn-success">Редактировать</a>
+                            <a href="{{ route('scripts.edit', $scripts_item->id) }}" class="btn btn-success">Редактировать</a>
 
-                    <form action="{{ route('scripts.destroy', $scripts_item->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
+                            <form action="{{ route('scripts.destroy', $scripts_item->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
 
-                        <button type="submit" class="btn btn-danger">Удалить</button>
+                                <button type="submit" class="btn btn-danger">Удалить</button>
 
-                    </form>
-                </div>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        @endforeach
+        </div>
 
         <h2 class="mt-5">Категории</h2>
 

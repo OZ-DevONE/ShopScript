@@ -42,6 +42,18 @@
             </div>
 
             <div class="mb-3">
+                <label for="source_code" class="form-label">Исходный код</label>
+                <input class="form-control" type="file" name="source_code" id="source_code">
+                @if (isset($scripts) && $scripts->source_code_path)
+                    <a href="/storage/{{ $scripts->source_code_path }}" download>Скачать текущий исходный код</a>
+                @endif
+                @error('source_code')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+            </div>
+            
+
+            <div class="mb-3">
                 <label for="category" class="form-label">Категории</label>
                 <select class="form-select" name="category" aria-label="Default select example">
                     @foreach ($categories as $categories_item)
@@ -52,6 +64,7 @@
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
+
 
             <div class="mb-3">
                 <label for="price" class="form-label">Цена</label>

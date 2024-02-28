@@ -81,7 +81,7 @@ class ScriptController extends Controller
             $file = $request->file("source_code");
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
             $path = $file->storeAs("public/source_codes", $filename);
-            $data["source_code_path"] = $path;
+            $data["source_code_path"] = str_replace("public/", "", $path);
         }
         
         
@@ -135,6 +135,7 @@ class ScriptController extends Controller
             "image" => ["required", "image"],
             "category" => ["required"],
             "price" => ["required"],
+            "source_code" => ["nullable", "file"],
         ], [
             "title.required" => "Поле 'Название скрипта' обязательно для заполнения",
             "description.required" => "Поле 'Описание' обязательно для заполнения",
@@ -147,6 +148,13 @@ class ScriptController extends Controller
             $image = str_replace("public/scripts", "", $request->file("image")->store("public/scripts"));
             $data["image"] = $image;
         }
+
+        if ($request->hasFile("source_code")) {
+            $file = $request->file("source_code");
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs("public/source_codes", $filename);
+            $data["source_code_path"] = str_replace("public/", "", $path);
+        }             
 
         $scripts->update($data);
 
