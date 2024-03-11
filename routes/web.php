@@ -110,9 +110,3 @@ Route::get('/cart/order', [CartController::class, 'showOrderForm'])->name('cart.
 
 // Обработать оформление заказа
 Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout')->middleware('prevent_admin_access');
-
-// роутер для robots
-Route::get('/robots.txt', function () {
-    $robotsContent = "User-agent: *\nDisallow: /admin\nDisallow: /login\nDisallow: /register";
-    return response($robotsContent)->header('Content-Type', 'text/plain');
-});
