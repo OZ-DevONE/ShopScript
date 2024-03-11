@@ -2,6 +2,17 @@
 
 @section('title', "Страница скрипта - {$script->title}")
 
+{{-- Добавление мета-тегов для SEO оптимизации --}}
+@section('head')
+<meta name="description" content="{{ Str::limit($script->description, 150, '...') }}">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Страница скрипта - {{ $script->title }}">
+<meta property="og:description" content="{{ Str::limit($script->description, 150, '...') }}">
+<meta property="og:image" content="{{ asset('storage/scripts/' . $script->image) }}">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta name="twitter:card" content="summary_large_image">
+@endsection
+
 @section('body')
 <div class="container my-5">
     <!-- Блок для вывода сообщений -->

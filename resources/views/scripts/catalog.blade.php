@@ -2,6 +2,15 @@
 
 @section('title', 'Каталог')
 
+@section('head')
+    {{-- Базовые мета-теги --}}
+    <meta name="description" content="Каталог скриптов включает разнообразные программные продукты для автоматизации задач, улучшения работы сайтов и многое другое.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Каталог скриптов | ShopScript">
+    <meta property="og:description" content="Просмотрите наш широкий ассортимент скриптов для различных нужд. Найдите идеальный скрипт для вашего проекта сегодня.">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endsection
+
 @section('body')
 <div class="container mt-5">
     <h2>Каталог</h2>
