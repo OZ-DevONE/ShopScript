@@ -110,3 +110,7 @@ Route::get('/cart/order', [CartController::class, 'showOrderForm'])->name('cart.
 
 // Обработать оформление заказа
 Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout')->middleware('prevent_admin_access');
+
+Route::get('/sitemap.xml', function() {
+    return response()->view('sitemap')->header('Content-Type', 'text/xml');
+})->name('sitemap');
