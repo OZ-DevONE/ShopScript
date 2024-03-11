@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>{{ url('/') }}</loc>
-        <lastmod>{{ now()->toAtomString() }}</lastmod>
+        <loc>http://kurbanqb.beget.tech/</loc>
         <changefreq>daily</changefreq>
         <priority>1.00</priority>
     </url>
     <url>
-        <loc>{{ url('/login') }}</loc>
+        <loc>http://kurbanqb.beget.tech/login</loc>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>{{ url('/register') }}</loc>
+        <loc>http://kurbanqb.beget.tech/register</loc>
         <changefreq>monthly</changefreq>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>{{ url('/profile') }}</loc>
+        <loc>http://kurbanqb.beget.tech/profile</loc>
         <changefreq>monthly</changefreq>
         <priority>0.70</priority>
     </url>
     <url>
-        <loc>{{ url('/scripts') }}</loc>
+        <loc>http://kurbanqb.beget.tech/scripts</loc>
         <changefreq>daily</changefreq>
         <priority>1.00</priority>
     </url>
     <url>
-        <loc>{{ url('/categories') }}</loc>
+        <loc>http://kurbanqb.beget.tech/cart</loc>
         <changefreq>daily</changefreq>
         <priority>1.00</priority>
     </url>
