@@ -18,6 +18,8 @@
     <!-- Форма для фильтрации -->
     <form action="{{ route('scripts.index') }}" method="GET" class="mb-5">
         <div class="row">
+
+
             <div class="col">
                 <select class="form-select" name="category">
                     <option value="">Выберите категорию</option>
@@ -26,6 +28,10 @@
                     @endforeach
                 </select>
             </div>
+
+
+
+
             <div class="col">
                 <select class="form-select" name="price">
                     <option value="">Сортировать по цене</option>
