@@ -110,3 +110,4 @@ Route::get('/cart/order', [CartController::class, 'showOrderForm'])->name('cart.
 
 // Обработать оформление заказа
 Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout')->middleware('prevent_admin_access');
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>http://kurbanqb.beget.tech/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>http://kurbanqb.beget.tech/login</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>http://kurbanqb.beget.tech/register</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>http://kurbanqb.beget.tech/profile</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.70</priority>
+    </url>
+    <url>
+        <loc>http://kurbanqb.beget.tech/scripts</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>http://kurbanqb.beget.tech/cart</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.00</priority>
+    </url>
+</urlset>

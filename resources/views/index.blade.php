@@ -1,8 +1,16 @@
 @extends('app.nav')
 
-@section('title', 'Главная')
+
+@section('title', 'Главная страница сайта - Ваш источник скриптов для автоматизации')
 
 @section('head')
+<meta name="description" content="Ищете скрипты для автоматизации задач? Наш сайт предлагает широкий ассортимент скриптов для электронной коммерции, аналитики, социальных сетей и многое другое.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Главная страница сайта - Ваш источник скриптов для автоматизации">
+<meta property="og:description" content="Ищете скрипты для автоматизации задач? Наш сайт предлагает широкий ассортимент скриптов для улучшения вашего бизнеса и личной эффективности.">
+<meta property="og:url" content="{{ url('/') }}">
+<link rel="canonical" href="{{ url('/') }}">
+
 <style>
     .container {
         max-width: 800px;

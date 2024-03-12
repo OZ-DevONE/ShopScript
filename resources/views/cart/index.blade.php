@@ -2,6 +2,15 @@
 
 @section('title', 'Корзина')
 
+{{-- SEO: Мета-теги для улучшения интеграции с социальными сетями --}}
+@section('head')
+    <meta name="description" content="Ваша корзина покупок на сайте ShopScript. Просмотрите выбранные товары и перейдите к оформлению заказа.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Корзина покупок | ShopScript">
+    <meta property="og:description" content="Просмотр и управление вашей корзиной покупок на сайте ShopScript. Оформите заказ в несколько кликов.">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endsection
+
 @section('body')
 <div class="container mt-4">
     <h2>Корзина</h2>

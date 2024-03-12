@@ -1,5 +1,10 @@
 @extends('app.nav')
 
+@section('head')
+    <meta name="description" content="Профиль пользователя {{ Auth::user()->name }} на сайте ShopScript. Просмотрите историю ваших покупок и управляйте настройками аккаунта.">
+@endsection
+
+
 @section('title', 'Профиль пользователя')
 
 @section('body')
